@@ -42,7 +42,7 @@ const Navbar = () => {
                {items}
             </ul>
           </div>
-          <a className=" text-xl font-bold"> Logo </a>
+          <a className=" text-xl font-bold"> JobNestle </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="space-x-5 text-[17px] font-bold menu-horizontal px-1">
