@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
           > My Jobs</NavLink> </li>
  </>
     return (
-        <div className="bg-base-300 py-2 shadow-md">
+        <div className="bg-white py-2 shadow-2xl">
        <div className="max-w-7xl mx-auto navbar ">
        <div className="navbar-start">
           <div className="dropdown">
@@ -51,7 +51,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Login</a>
+          <Link to="/register"> Register </Link>
         </div>
        </div>
       </div>  
