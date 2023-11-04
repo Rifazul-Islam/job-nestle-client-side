@@ -1,9 +1,20 @@
+import { Link } from "react-router-dom";
 
 const Register = () => {
 
+const handlerRegister = (e) =>{
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password= form.password.value;
 
-    
-    return (
+ console.log(name, photo, email, password);
+}
+
+
+return (
   <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col w-[500px]">
     <div className="text-center ">
@@ -11,7 +22,7 @@ const Register = () => {
     
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-    <form className="card-body">
+    <form onSubmit={handlerRegister} className="card-body">
 
 <div className="form-control">
   <label className="label">
@@ -44,9 +55,10 @@ const Register = () => {
 </div>
 
 <div className="form-control mt-6">
-  <button className="btn btn-success capitalize">Register</button>
+  <button className="btn btn-success capitalize"> Register</button>
 </div>
 </form>
+<p className="pb-10 text-center text-indigo-600"> You Have an Account Please  <Link to="/login" className="text-orange-500">Login</Link> </p>
     </div>
   </div>
 </div>
