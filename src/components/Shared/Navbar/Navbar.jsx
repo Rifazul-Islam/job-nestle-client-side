@@ -4,14 +4,34 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
 
  const items = <>
-          <li> <NavLink to="/"> Home </NavLink> </li>
-          <li> <NavLink to="/"> All Jobs</NavLink> </li>
-          <li> <NavLink to="/"> Applied Jobs </NavLink> </li>
-          <li> <NavLink to="/"> Add A Job</NavLink> </li>
-          <li> <NavLink to="/"> My Jobs</NavLink> </li>
+          <li> <NavLink to="/"
+           className={({isActive})=>
+           isActive ? "text-green-600": " "}
+          > Home </NavLink> </li>
+
+          <li> <NavLink to="/all_Jobs"
+           className={({isActive})=>
+           isActive ? "text-green-600": " "}
+          > All Jobs</NavLink> </li>
+
+          <li> <NavLink to="/applied_jobs"
+           className={({isActive})=>
+           isActive ? "text-green-600": " "}
+
+          > Applied Jobs </NavLink> </li>
+
+          <li> <NavLink to="/add_A_Job"
+           className={({isActive})=>
+           isActive ? "text-green-600": " "}
+
+          > Add A Job</NavLink> </li>
+          <li> <NavLink to="/myJobs"
+           className={({isActive})=>
+           isActive ? "text-green-600": " "}
+          > My Jobs</NavLink> </li>
  </>
     return (
-        <div className="bg-base-300 py-2">
+        <div className="bg-base-300 py-2 shadow-md">
        <div className="max-w-7xl mx-auto navbar ">
        <div className="navbar-start">
           <div className="dropdown">
@@ -25,7 +45,7 @@ const Navbar = () => {
           <a className=" text-xl font-bold"> Logo </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="space-x-5 font-bold menu-horizontal px-1">
+          <ul className="space-x-5 text-[17px] font-bold menu-horizontal px-1">
            
           {items}
           </ul>
