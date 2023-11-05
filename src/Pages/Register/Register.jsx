@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 const Register = () => {
 
-const {createNewUser} = useAuth()
+const {createNewUser, UpdateProfile,setUser} = useAuth()
 
 const handlerRegister = (e) =>{
     e.preventDefault();
@@ -14,13 +14,19 @@ const handlerRegister = (e) =>{
     const email = form.email.value;
     const password= form.password.value;
 
- console.log(name, photo, email, password);
 
  createNewUser(email,password)
  .then(result =>{
   const userInfo = result.user;
-  console.log(userInfo);
   toast.success("New User Create Successfully")
+  UpdateProfile(userInfo,{displayName: name , photoURL : photo})
+  .then(()=>{
+    setUser({...userInfo, displayName: name, photoURL: photo})
+    toast.success("User Profile Update Successfully")
+  })
+  .catch(error =>{
+    toast.error(error.message)
+   })
  })
  .catch(error =>{
   toast.error(error.message)

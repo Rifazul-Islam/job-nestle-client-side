@@ -25,7 +25,7 @@ const handlerSignOut = ()=>{
           > All Jobs</NavLink> </li>
 
          {
-          user?.email ?  <> <li> <NavLink to="/applied_jobs"
+          user?  <> <li> <NavLink to="/applied_jobs"
           className={({isActive})=>
           isActive ? "text-green-600": " "}
 
@@ -67,9 +67,15 @@ const handlerSignOut = ()=>{
           {items}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end ">
           {
-            user?.email ? <button onClick={handlerSignOut} > Sign out</button> : <Link to="/login"> Login </Link>
+            user? <span className="flex items-center space-x-7"> <span onClick={handlerSignOut} className="cursor-pointer btn capitalize" > Sign out</span> <div className="tooltip tooltip-left " data-tip={user?.displayName}> <div className="avatar cursor-pointer">
+            <div className="w-12 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
+          </div> </div>  </span> 
+          
+          : <Link to="/login" className="btn capitalize"> Login </Link>
           }
         </div>
        </div>
@@ -77,4 +83,4 @@ const handlerSignOut = ()=>{
     );
 };
 
-export default Navbar;
+export default Navbar; 

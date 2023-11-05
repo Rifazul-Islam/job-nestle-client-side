@@ -2,11 +2,11 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-
+import { AiFillGithub } from "react-icons/ai";
 
 const Login = () => {
 
-const {userLogin} = useAuth()
+const {userLogin,gitHubLoginSystem} = useAuth()
 
 
     const handlerLogin = (e) =>{
@@ -26,10 +26,22 @@ const {userLogin} = useAuth()
       toast.error(error.message)
      })
 
-
-
-
     }
+
+    const handlerGithubLogin = ()=>{
+      gitHubLoginSystem()
+      .then(()=>{
+        toast.success("Github Login Successfully")
+      })
+      .catch(error =>{
+        toast.error(error.message)
+       })
+    }
+
+
+
+
+
     return (
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col w-[500px]">
@@ -59,8 +71,15 @@ const {userLogin} = useAuth()
         <button className="btn btn-success capitalize">Login</button>
       </div>
       </form>
-       <p className="pb-10 text-center text-indigo-600"> Are you New Please <Link className="text-orange-500" to="/register">Register</Link> </p>
+       <div onClick={handlerGithubLogin} className="text-center">
+       <button  className="btn btn-success capitalize px-[90px]"> <AiFillGithub/> Github with Login</button>
+       </div>
+          <p className="pb-10 pt-2 text-center text-indigo-600"> Are you New Please <Link className="text-orange-500" to="/register">Register</Link> </p>
+
+
           </div>
+       
+
         </div>
       </div>
     );
