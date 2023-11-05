@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 
 const JobCard = ({job}) => {
-const {name,photo,category,title,salary,description,postDate,deadline,defaultNum} = job 
+const {name,photo,category,title,salary,description,postDate,deadline,defaultNum,_id} = job 
 
 
     return (
@@ -15,7 +16,7 @@ const {name,photo,category,title,salary,description,postDate,deadline,defaultNum
      <p> job Applied : {defaultNum} </p>
 
     <div className="card-actions justify-end">
-      <button className="btn btn-success capitalize">View Details</button>
+      <Link to={`/details/${_id}`}><button  className="btn btn-success capitalize" >View Details</button></Link>
     </div>
   </div>
 </div>
