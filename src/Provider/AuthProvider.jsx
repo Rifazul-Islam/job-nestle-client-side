@@ -68,6 +68,13 @@ const authInfo = {
  gitHubLoginSystem
 }
 
+useEffect(()=>{
+  if(user){
+    return setLoading(false)
+   }
+   
+} ,[user])
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

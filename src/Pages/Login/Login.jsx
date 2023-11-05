@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
@@ -7,7 +7,8 @@ import { AiFillGithub } from "react-icons/ai";
 const Login = () => {
 
 const {userLogin,gitHubLoginSystem} = useAuth()
-
+const location = useLocation();
+const navigate = useNavigate()
 
     const handlerLogin = (e) =>{
         e.preventDefault();
@@ -15,12 +16,14 @@ const {userLogin,gitHubLoginSystem} = useAuth()
         const email = form.email.value;
         const password= form.password.value;
     
-     console.log(email, password);
+  
      userLogin(email, password)
      .then(result =>{
       const userInfo = result.user;
       console.log(userInfo);
       toast.success("User Login Successfully")
+
+        navigate(`${location?.state ? location?.state : "/"}`)
      })
      .catch(error =>{
       toast.error(error.message)
