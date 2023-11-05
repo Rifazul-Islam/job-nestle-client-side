@@ -4,7 +4,7 @@ import Card from "./Card";
 
 const All_jobs = () => {
 const [allJobs,setAllJobs] = useState([])
-
+const [title , setTitle] = useState(" ")
 
 useEffect( () => {
     axios.get("http://localhost:5000/api/v1/jobs")
@@ -12,11 +12,31 @@ useEffect( () => {
 },[])
     
 
+const handlerSearch =(e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const title = form.name.value;
+    setTitle(title)
+    form.reset()
+   
+}
+
+useEffect(()=>{
+    fetch(`http://localhost:5000/api/v1/jobs-title?title=${title}`)
+    .then(res => res.json())
+    .then( data => setAllJobs(data) )
+    
+    } ,[title])
+
+
     return (
-        <div>
-            <div className="bg-[#F1B6BC]   w-full h-60">
+        <div className="mt-2">
+            <div className="bg-[#F1B6BC] w-full h-60">
                     <div className="text-center pt-24">
-                        <input className="w-1/2 py-2 pl-4" type="search" name="" id="" />
+                        <form onSubmit={handlerSearch}>
+                        <input className="w-1/2 py-2 pl-4" type="text" name="name" placeholder="Please Search your job Title" id="" />
+                        
+                        </form>
                     </div>
 
                     
