@@ -42,7 +42,7 @@ const handlerSignOut = ()=>{
          > My Jobs</NavLink> </li> </> : " "
          }
 
-         <li> <NavLink to="/blogs"
+         <li> <NavLink to="/blog"
           className={({isActive})=>
           isActive ? "text-green-600": " "}
          > Blogs</NavLink> </li>
