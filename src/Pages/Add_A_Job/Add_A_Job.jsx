@@ -2,10 +2,20 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import axios from "axios";
+import toast from "react-hot-toast";
 const Add_A_Job = () => {
     const[error,setError] = useState("")
     const [startDate, setStartDate] = useState(new Date());
+    const [postDate, setPostDate] = useState(new Date());
+
     const{user} = useAuth();
+
+  // date convert 
+    let deadline = (startDate.toLocaleDateString());
+    let postDated = (postDate.toLocaleDateString());
+  
+
     const handlerAddProduct =(e)=>{
       e.preventDefault();
       const form = e.target;
@@ -14,12 +24,13 @@ const Add_A_Job = () => {
       const photo = form.photo.value;
       const category = form.category.value;
       const salary = form.salary.value;
+      const postDate = postDated ;
       const description = form.description.value;
-      const postDate = form.date.value;
       const defaultNum= form.number.value;
-      const deadline = startDate || 11-5-2023;
+      deadline
       
-
+     
+   
        
       if(category === "Please Select Job Category"){
         return setError("Please Select Job Category")
@@ -28,9 +39,18 @@ const Add_A_Job = () => {
         setError("")
      )
     
-      const newProduct = {name,photo,category,title,salary,description,postDate,deadline,defaultNum}
-      console.log(newProduct);
-     }
+      const job = {name,photo,category,title,salary,description,postDate,deadline,defaultNum}
+      
+
+    axios.post("http://localhost:5000/api/v1/insert-jobs", job)
+    .then(res =>{
+        if(res?.data?.insertedId)
+        toast.success("Your Job Post MongoDB Inserted Successfully")
+        form.reset()
+    })
+    
+    
+    }
 
 
 
@@ -94,31 +114,31 @@ const Add_A_Job = () => {
                         <span className="label-text"> Job Posting Date </span>
                         </label>
                         <label className="input-group">
-                        <input type="date" name="date" placeholder="Job Posting Date" id="" className="input input-bordered w-full" required />
+                        <DatePicker className="input input-bordered md:w-[615px]" required selected={postDate} onChange={(date) => setPostDate(date)} />
                         </label>
                     </div>
             
             </div>  
 
-    <div className="flex gap-3 pt-5">
+        <div className="flex gap-3 pt-5">
 
-       <div className="form-control w-1/2 ">
-         <label className="label">
-           <span className="label-text">Salary range</span>
-         </label>
-         <label className="input-group">
-           <input type="text" name="salary"  placeholder="Salary range" className="input input-bordered w-full" required />
-         </label>
-       </div>
+        <div className="form-control w-1/2 ">
+            <label className="label">
+            <span className="label-text">Salary range</span>
+            </label>
+            <label className="input-group">
+            <input type="text" name="salary"  placeholder="Salary range" className="input input-bordered w-full" required />
+            </label>
+        </div>
 
-       <div className="form-control w-1/2">
-     <label className="label">
-       <span className="label-text">Picture URL of the Job Banner</span>
-     </label>
-     <label className="input-group">       
-     <input type="text" name="photo" placeholder="Product Photo" className="input input-bordered w-full" required />      </label>
-   </div>
-    </div>  
+        <div className="form-control w-1/2">
+        <label className="label">
+        <span className="label-text">Picture URL of the Job Banner</span>
+        </label>
+        <label className="input-group">       
+        <input type="text" name="photo" placeholder="Product Photo" className="input input-bordered w-full" required />      </label>
+    </div>
+        </div>  
 
         <div className="flex gap-3 pt-5">
         <div className="form-control w-1/2">
@@ -157,9 +177,9 @@ const Add_A_Job = () => {
     </div>
 
 
-<div className="">
-<input className="btn btn-success  w-40 my-7 hover:bg-secondary capitalize" type="submit" value="Add Job" />
-</div>
+    <div className="">
+    <input className="btn btn-success  w-40 my-7 hover:bg-secondary capitalize" type="submit" value="Add Job" />
+    </div>
 
 </form>  
                                   

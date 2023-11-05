@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import JobCard from './JobCard';
 
 const Job_Category = () => {
-const[category,setCategory] = useState(" ")
+const[category,setCategory] = useState("")
 const[AllItems ,setAllItems] = useState([])
 const[jobs ,setJobs] = useState([])
 
@@ -33,7 +34,7 @@ return (
         
     <Tabs className="pt-6">
     <TabList className='text-center w-1/2 mx-auto'>
-      <Tab> All Jobs</Tab>
+    <Tab> All Jobs</Tab>
     {
       AllItems?.map(job =>{
 
@@ -42,10 +43,9 @@ return (
     }
     </TabList>  
 
-    <div className='text-2xl'>
-
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-40'>
     {
-      jobs?.map(job =><div key={job?._id}>{job?.title}</div>)
+      jobs?.map(job => <JobCard key={job?._id} job={job} > </JobCard>)
     }
     </div>
     
