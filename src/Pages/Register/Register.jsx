@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
+
+const {createNewUser} = useAuth()
 
 const handlerRegister = (e) =>{
     e.preventDefault();
@@ -11,6 +15,17 @@ const handlerRegister = (e) =>{
     const password= form.password.value;
 
  console.log(name, photo, email, password);
+
+ createNewUser(email,password)
+ .then(result =>{
+  const userInfo = result.user;
+  console.log(userInfo);
+  toast.success("New User Create Successfully")
+ })
+ .catch(error =>{
+  toast.error(error.message)
+ })
+
 }
 
 

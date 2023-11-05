@@ -1,7 +1,14 @@
+
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
+
+const {userLogin} = useAuth()
+
+
     const handlerLogin = (e) =>{
         e.preventDefault();
         const form = e.target;
@@ -9,6 +16,19 @@ const Login = () => {
         const password= form.password.value;
     
      console.log(email, password);
+     userLogin(email, password)
+     .then(result =>{
+      const userInfo = result.user;
+      console.log(userInfo);
+      toast.success("User Login Successfully")
+     })
+     .catch(error =>{
+      toast.error(error.message)
+     })
+
+
+
+
     }
     return (
         <div className="hero min-h-screen bg-base-200">

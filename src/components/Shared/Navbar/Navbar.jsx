@@ -1,8 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const Navbar = () => {
 
+const{user,userLogOut} = useAuth();
+
+const handlerSignOut = ()=>{
+  userLogOut()
+  .then(()=>{
+    toast.success("User Sign Out Successfully")
+  })
+}
  const items = <>
           <li> <NavLink to="/"
            className={({isActive})=>
@@ -14,21 +24,28 @@ const Navbar = () => {
            isActive ? "text-green-600": " "}
           > All Jobs</NavLink> </li>
 
-          <li> <NavLink to="/applied_jobs"
-           className={({isActive})=>
-           isActive ? "text-green-600": " "}
+         {
+          user?.email ?  <> <li> <NavLink to="/applied_jobs"
+          className={({isActive})=>
+          isActive ? "text-green-600": " "}
 
-          > Applied Jobs </NavLink> </li>
+         > Applied Jobs </NavLink> </li>
 
-          <li> <NavLink to="/add_A_Job"
-           className={({isActive})=>
-           isActive ? "text-green-600": " "}
+         <li> <NavLink to="/add_A_Job"
+          className={({isActive})=>
+          isActive ? "text-green-600": " "}
 
-          > Add A Job</NavLink> </li>
-          <li> <NavLink to="/myJobs"
-           className={({isActive})=>
-           isActive ? "text-green-600": " "}
-          > My Jobs</NavLink> </li>
+         > Add A Job</NavLink> </li>
+         <li> <NavLink to="/myJobs"
+          className={({isActive})=>
+          isActive ? "text-green-600": " "}
+         > My Jobs</NavLink> </li> </> : " "
+         }
+
+         <li> <NavLink to="/blogs"
+          className={({isActive})=>
+          isActive ? "text-green-600": " "}
+         > Blogs</NavLink> </li>
  </>
     return (
         <div className="bg-white py-2 shadow-2xl">
@@ -51,7 +68,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login"> Login </Link>
+          {
+            user?.email ? <button onClick={handlerSignOut} > Sign out</button> : <Link to="/login"> Login </Link>
+          }
         </div>
        </div>
       </div>  
