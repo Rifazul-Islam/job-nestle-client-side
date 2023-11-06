@@ -1,15 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
+import axios from "axios";
 
 
 const Details = () => {
 const {user} = useAuth();
 const job = useLoaderData()
-const {name:userName,photo,category,title,salary,description,postDate,deadline,defaultNum} = job;
+const {_id,name:userName,photo,category,title,salary,description,postDate,deadline,defaultNum} = job;
 const currentDate = new Date();
 const myDate = (currentDate.toLocaleDateString())
-
+console.log(parseFloat(defaultNum)+8+1);
 
 const handlerModal = (e)=>{
     e.preventDefault();
@@ -18,16 +20,36 @@ const handlerModal = (e)=>{
     const name = user?.displayName;
     const email = user?.email;
     
-
+   const applied = {name,email,resume}
    if(name === userName){
      return toast.error("Application is not allowed, because your own job")
    }
    if(myDate === deadline){
     return toast.error("Application is not allowed, because time is over")
    }
+
+    axios.post("http://localhost:5000/api/v1/job-applies", applied)
+    .then(res =>{
+        if(res.data){
+            console.log(res.data);
+            toast.success("Your Apply Successfully")
+            axios.patch(`http://localhost:5000/api/v1/appliedCount/${_id}`,{defaultNum} )
+            .then(res =>{
+                console.log(res?.data);
+                toast.success("Apply Update")
+            })
+
+        }
+    })
+   
     
-   console.log(name,email, resume);
+   
+   
 }
+
+
+
+
 
 
     return (
