@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+
 import axios from "axios";
 
 
@@ -20,7 +20,7 @@ const handlerModal = (e)=>{
     const name = user?.displayName;
     const email = user?.email;
     
-   const applied = {name,email,resume}
+   const applied = {email,resume,category,photo,title,salary}
    if(name === userName){
      return toast.error("Application is not allowed, because your own job")
    }
@@ -42,14 +42,7 @@ const handlerModal = (e)=>{
         }
     })
    
-    
-   
-   
 }
-
-
-
-
 
 
     return (
