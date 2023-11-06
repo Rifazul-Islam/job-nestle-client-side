@@ -2,7 +2,7 @@
 
 const Footer = () => {
 return (
-<footer className="footer p-10 mt-20 bg-base-300 text-base-content">
+<footer className="footer p-10 mt-20 bg-[#00283C] text-white">
   <aside>
   <img className="w-24" src="https://i.ibb.co/MggRsBQ/jobLogo.png" alt="" />
     <p>JobNestle Industries Ltd.<br/>Providing reliable tech since 1992</p>
