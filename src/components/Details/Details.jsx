@@ -1,9 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const Details = () => {
 const {user} = useAuth();
+const job = useLoaderData()
+const {name:userName,photo,category,title,salary,description,postDate,deadline,defaultNum} = job;
+const currentDate = new Date();
+const myDate = (currentDate.toLocaleDateString())
+
 
 const handlerModal = (e)=>{
     e.preventDefault();
@@ -11,15 +17,19 @@ const handlerModal = (e)=>{
     const resume = form.resume.value;
     const name = user?.displayName;
     const email = user?.email;
-    console.log(name,email, resume);
+    
+
+   if(name === userName){
+     return toast.error("Application is not allowed, because your own job")
+   }
+   if(myDate === deadline){
+    return toast.error("Application is not allowed, because time is over")
+   }
+    
+   console.log(name,email, resume);
 }
 
 
-
-
-
-const job = useLoaderData()
-const {name,photo,category,title,salary,description,postDate,deadline,defaultNum} = job
     return (
         <div className="px-2">
             <div>
@@ -35,6 +45,7 @@ const {name,photo,category,title,salary,description,postDate,deadline,defaultNum
                 <p>{description}</p>
                 <p> salary range : {salary}</p>
                 <p> Job Applied : {defaultNum}</p>
+                <p>deadline : {deadline}</p>
                 <div className="card-actions justify-end">
 
                 <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="btn btn-success  capitalize"> Apply Now </button>

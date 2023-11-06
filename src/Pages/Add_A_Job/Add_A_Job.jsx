@@ -81,7 +81,7 @@ const Add_A_Job = () => {
                 <span className="label-text">Logged In User Name</span>
                 </label>
                 <label className="input-group">
-                <input type="text" defaultValue={user?.displayName} name="name" placeholder="Product Photo" className="input input-bordered w-full" required />
+                <input type="text" defaultValue={user?.displayName}  name="name" placeholder="Product Photo" className="input input-bordered w-full" readOnly />
                 </label>
             </div>
             
