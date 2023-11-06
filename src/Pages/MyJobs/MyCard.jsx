@@ -10,7 +10,7 @@ const MyCard = ({job,jobs,setJobs}) => {
     const handlerDelete=(id)=>{
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "Your Job Post deleted!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -24,7 +24,7 @@ const MyCard = ({job,jobs,setJobs}) => {
                    if(res?.data?.deletedCount > 0){
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        text: "Your Job Post has been deleted.",
                         icon: "success"
                       });
     
