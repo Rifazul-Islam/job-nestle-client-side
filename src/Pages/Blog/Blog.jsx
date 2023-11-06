@@ -1,7 +1,9 @@
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
 const Blog = () => {
     return (
         <div>
+             <PageTitle title="Blog Page"/>
             <div> 
                 <img className="w-full h-96 object-cover" src="https://i0.wp.com/linkskorner.com/wp-content/uploads/2018/12/question-answer-sites-list.jpg?fit=2560%2C1440&ssl=1" alt="" />
             </div>

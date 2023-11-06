@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
 const All_jobs = () => {
 const [allJobs,setAllJobs] = useState([])
@@ -31,6 +32,9 @@ useEffect(()=>{
 
     return (
         <div className="mt-2">
+
+            <PageTitle  title="All jobs Page"/>
+
             <div className="bg-[#F1B6BC] w-full h-60">
                     <div className="text-center pt-24">
                         <form onSubmit={handlerSearch}>

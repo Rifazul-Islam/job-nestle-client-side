@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
 import axios from "axios";
+import PageTitle from "../Shared/PageTitle/PageTitle";
 
 
 const Details = () => {
@@ -20,7 +21,7 @@ const handlerModal = (e)=>{
     const name = user?.displayName;
     const email = user?.email;
     
-   const applied = {email,resume,category,photo,title,salary}
+   const applied = {name,email,resume,category,photo,title,salary}
    if(name === userName){
      return toast.error("Application is not allowed, because your own job")
    }
@@ -47,6 +48,7 @@ const handlerModal = (e)=>{
 
     return (
         <div className="px-2">
+            <PageTitle title="details route" />
             <div>
             <img className=" rounded-lg pt-1" src="https://i.ibb.co/rc91MFm/Career2.jpg" alt="" />
             </div>

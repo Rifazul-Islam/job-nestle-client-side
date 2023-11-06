@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
 const Register = () => {
 
 const {createNewUser, UpdateProfile,setUser} = useAuth()
-
+const navigate = useNavigate();
 const handlerRegister = (e) =>{
     e.preventDefault();
     const form = e.target;
@@ -23,6 +24,7 @@ const handlerRegister = (e) =>{
   .then(()=>{
     setUser({...userInfo, displayName: name, photoURL: photo})
     toast.success("User Profile Update Successfully")
+    navigate("/")
   })
   .catch(error =>{
     toast.error(error.message)
@@ -37,6 +39,7 @@ const handlerRegister = (e) =>{
 
 return (
   <div className="hero min-h-screen bg-base-200">
+     <PageTitle  title="Register Page"/>
   <div className="hero-content flex-col w-[500px]">
     <div className="text-center ">
       <h1 className="text-4xl font-bold text-green-600">Register Now !</h1>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import MyCard from "./MyCard";
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
 
 const MyJobs = () => {
@@ -28,6 +29,7 @@ useEffect(()=>{
 
     return (
         <div>
+            <PageTitle  title="My jobs Page"/>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-20">
             {
                 jobs?.map(job =><MyCard key={job?._id} job={job}

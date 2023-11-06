@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import toast from "react-hot-toast";
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 const Add_A_Job = () => {
     const[error,setError] = useState("")
     const [startDate, setStartDate] = useState(new Date());
@@ -48,14 +49,11 @@ const Add_A_Job = () => {
         toast.success("Your Job Post MongoDB Inserted Successfully")
         form.reset()
     })
-    
-    
     }
-
-
 
     return (
         <div>
+          <PageTitle  title="Add A job Page"/>
            <div>
             <img className="h-96 rounded-lg w-full" src="https://easy.jobs/wp-content/uploads/2021/04/How-To-Write-A-Great-Job-Posting-With-Examples.png" alt="" />
            </div>
@@ -96,7 +94,7 @@ const Add_A_Job = () => {
                 </label>
                 <label className="input-group">
 
-                <select name="category"  className="select select-bordered w-full " required >
+            <select name="category"  className="select select-bordered w-full " required >
                 <option defaultValue={"Please Select Job Category"}>Please Select Job Category</option>
                 <option>OnSite Jobs</option>
                 <option>Remote Job</option>

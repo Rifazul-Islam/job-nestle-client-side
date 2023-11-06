@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import toast from "react-hot-toast";
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
 const UpdateJobs = () => {
 const job = useLoaderData() ; 
@@ -47,6 +48,7 @@ const updateJob = {name,title,photo,category, deadline, postDate, salary,descrip
 }
     return (
       <div>
+          <PageTitle  title="Update job route"/>
          <div>
         <div>
          <img className="h-96 rounded-lg w-full" src="https://easy.jobs/wp-content/uploads/2021/04/How-To-Write-A-Great-Job-Posting-With-Examples.png" alt="" />

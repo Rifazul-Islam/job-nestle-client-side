@@ -32,11 +32,9 @@ useEffect(()=>{
 } ,[])
 
 
-
-
-
 return (
 <div>
+  
     <h1 className="text-orange-600 text-3xl font-bold text-center pt-8"> All Job Category </h1>
         
     <Tabs className="pt-6">

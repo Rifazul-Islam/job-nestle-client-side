@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
+import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
 const Login = () => {
 
@@ -47,6 +48,7 @@ const navigate = useNavigate()
 
     return (
         <div className="hero min-h-screen bg-base-200">
+           <PageTitle  title="Login Page"/>
         <div className="hero-content flex-col w-[500px]">
           <div className="text-center ">
             <h1 className="text-4xl font-bold text-green-600">Login Now !</h1>
