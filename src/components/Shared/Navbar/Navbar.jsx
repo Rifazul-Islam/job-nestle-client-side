@@ -59,7 +59,7 @@ const handlerSignOut = ()=>{
                {items}
             </ul>
           </div>
-          <a className=" text-xl font-bold"> JobNestle </a>
+          <a className=" text-xl font-bold"> <img className="w-16" src="https://i.ibb.co/MggRsBQ/jobLogo.png" alt="" /> JobNestle </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="space-x-5 text-[17px] font-bold menu-horizontal px-1">
