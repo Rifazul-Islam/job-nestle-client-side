@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Card = ({job}) => {
@@ -13,10 +14,10 @@ const Card = ({job}) => {
             <p> Post Date : {postDate} </p>
             <p>Apple Deadline: {deadline} </p>
             <p>Salary range: ${salary} </p>
-            <p> job Applied : {defaultNum} </p>
+            
        
            <div className="card-actions justify-end">
-             <button  className="btn btn-success capitalize" >View Details</button>
+             <Link to={`/details/${_id}`}><button  className="btn btn-success capitalize" >View Details</button></Link>
            </div>
          </div>
        </div>

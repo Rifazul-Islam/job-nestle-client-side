@@ -1,8 +1,24 @@
 import { useLoaderData } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const Details = () => {
- const job = useLoaderData()
+const {user} = useAuth();
+
+const handlerModal = (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const resume = form.resume.value;
+    const name = user?.displayName;
+    const email = user?.email;
+    console.log(name,email, resume);
+}
+
+
+
+
+
+const job = useLoaderData()
 const {name,photo,category,title,salary,description,postDate,deadline,defaultNum} = job
     return (
         <div className="px-2">
@@ -20,14 +36,58 @@ const {name,photo,category,title,salary,description,postDate,deadline,defaultNum
                 <p> salary range : {salary}</p>
                 <p> Job Applied : {defaultNum}</p>
                 <div className="card-actions justify-end">
-                <button className="btn btn-success  capitalize"> Apply Now </button>
+
+                <button onClick={()=>document.getElementById('my_modal_3').showModal()} className="btn btn-success  capitalize"> Apply Now </button>
                 </div>
             </div>
            </div>
 
+         </div>
+
+
+        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      
+        <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+            <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <form onSubmit={handlerModal}>
+                            
+            <div className="flex gap-3 pt-5">
+            <div className="form-control w-1/2">
+            <label className="label">
+            <span className="label-text">Logged In User Name</span>
+            </label>
+            <label className="input-group">
+            <input type="text"  name="name" defaultValue={user?.displayName} placeholder="Logged In User Name" className="input input-bordered w-full" required />
+            </label>
             </div>
+
+            <div className="form-control w-1/2 ">
+            <label className="label">
+            <span className="label-text">Logged In User Email</span>
+            </label>
+            <label className="input-group">
+            <input type="text" name="email" defaultValue={user?.email}  placeholder="Logged In User Email" className="input input-bordered w-full" required />
+            </label>
+            </div>
+
+            </div>  
+
+            <div className="form-control pt-7">
+            <input type="text" name="resume" placeholder="Resume URL" className="input input-bordered" required />
+            </div>
+                <button className="btn btn-success capitalize mt-8"> Submit Now</button>
+            </form>
+        </div>
+        </dialog>    
+
         </div>
     );
 };
 
 export default Details;
+
+
