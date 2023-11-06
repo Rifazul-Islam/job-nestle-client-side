@@ -1,15 +1,44 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
-const MyCard = ({job}) => {
+const MyCard = ({job,jobs,setJobs}) => {
+
     const {name,photo,category,title,salary,description,postDate,deadline,defaultNum,_id} = job 
 
-//  const handlerSumimted = (e)=>{
-//     e.preventDefault();
-//     const form = e.target;
-//     const name = form.name.value;
-//     console.log(name);
-//  }
+    const handlerDelete=(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/api/v1/jobs-title/${id}`)
+
+                .then(res =>{
+                   if(res?.data?.deletedCount > 0){
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+    
+                const remaining = jobs.filter(item => item?._id !== id) 
+                 setJobs(remaining)
+
+
+                   }
+                })
+            }
+          });  
+       }
+       
+
 
 
 
@@ -28,7 +57,7 @@ const MyCard = ({job}) => {
        
            <div className="card-actions my-2">
              <Link to={`/updateJobs/${_id}`}><button  className="btn btn-success capitalize" >Update</button></Link>
-             <Link to={`/details/${_id}`}><button  className="btn btn-success capitalize" >Delete</button></Link>
+             <button onClick={()=>handlerDelete(_id)}  className="btn btn-success capitalize" >Delete</button>
            
            </div>
          </div>
