@@ -4,12 +4,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAHUmBSe19K7an0zL5tX-EhiBMJ3H_Fr80",
-  authDomain: "jobnestle-client-side.firebaseapp.com",
-  projectId: "jobnestle-client-side",
-  storageBucket: "jobnestle-client-side.appspot.com",
-  messagingSenderId: "1082477213284",
-  appId: "1:1082477213284:web:42e3c2d4fb8dee7a641171"
+  apiKey:import.meta.env.VITE_APIKEY,
+  authDomain:import.meta.env.VITE_AUTHDOMAIN,
+  projectId:import.meta.env.VITE_PROJECTID,
+  storageBucket:import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId:import.meta.env.VITE_MESSAGINGSENDERID,
+  appId:import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase
