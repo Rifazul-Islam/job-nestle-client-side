@@ -2,6 +2,8 @@ import { GithubAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 import auth from "../config/firebase.config";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 const gitHubProvider = new GithubAuthProvider();
@@ -45,9 +47,26 @@ const AuthProvider = ({children}) => {
 // on Auth State change 
 useEffect( ()=>{
 const unSubscribe = onAuthStateChanged(auth, currentUser =>{
+   const loggedUser = currentUser?.email || user?.email ;
+   const userEmail = {email : loggedUser}
     setUser(currentUser)
     setLoading(false)
-    console.log(currentUser);
+ if(currentUser){
+    axios.post("http://localhost:5000/api/v1/jwt",userEmail,{withCredentials : true} )
+    .then(res =>{
+      console.log(res.data);
+      toast.success("Token Create Successfully")
+    })
+ }else{
+    axios.post("http://localhost:5000/api/v1/singOut",userEmail, {withCredentials: true})
+    .then(res =>{
+      console.log(res.data);
+    })
+ }
+
+
+
+   
 })
 
 return () =>{

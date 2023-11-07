@@ -1,33 +1,21 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import CardTable from "./CardTable";
 import PageTitle from "../../components/Shared/PageTitle/PageTitle";
+import useAxios from "../../hooks/useAxios";
 
 
 const Applied_jobs = () => {
 const[applies,setApplies] = useState([]) ;
 const {user}= useAuth()  
+const axiosSecure = useAxios();
 useEffect(()=>{
- axios.get(`http://localhost:5000/api/v1/applied?name=${user?.displayName}`)
+  axiosSecure.get(`/api/v1/applied?email=${user?.email}`)
  .then(res =>{
     setApplies(res?.data)
  })
-},[user?.displayName])
-
-
-
-
-const[allJobs,setAllJobs] = useState(" ")
-
-
-useEffect( ()=>{
- axios.get(`http://localhost:5000/api/v1/applied?category=${allJobs}`) 
- .then(res =>{
-  setApplies(res?.data)
- })
-  
-},[allJobs] )
+},[axiosSecure,user?.email])
 
 
     return (
@@ -37,8 +25,8 @@ useEffect( ()=>{
             <div  className="bg-blue-300 w-full h-60 rounded-lg ">
             <div className="text-center pt-24">
                 
-                <select name="category" defaultValue={allJobs} onChange={(e)=>setAllJobs(e.target.value)} className="select select-bordered w-1/2 mx-auto" required >
-                
+                <select name="category" className="select select-bordered w-1/2 mx-auto" required >
+                <open>Please Selected Category</open>
                 <option>OnSite Jobs</option>
                 <option>Remote Job</option>
                 <option>Hybrid Jobs</option>

@@ -3,29 +3,20 @@ import { useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import MyCard from "./MyCard";
 import PageTitle from "../../components/Shared/PageTitle/PageTitle";
+import useAxios from "../../hooks/useAxios";
+
 
 
 const MyJobs = () => {
 const{user} = useAuth();
 const name = user?.displayName;
+const axiosSecure = useAxios()
 
 const[jobs,setJobs] = useState([])   
 useEffect(()=>{
-    fetch(`http://localhost:5000/api/v1/jobs-title?name=${name}`)
-    .then(res => res.json())
-    .then( data => setJobs(data) )
-    
-    } ,[name])
-
-
-   
-
-
-
-
-
-
-
+    axiosSecure.get(`/api/v1/jobs-UserName?name=${name}`)
+    .then(res => setJobs(res?.data))
+    } ,[axiosSecure,name])
 
     return (
         <div>

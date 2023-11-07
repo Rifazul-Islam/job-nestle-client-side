@@ -1,15 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 
 const SecondSection = () => {
 const[logos ,setLogos] = useState([])
 
+useEffect( ()=>{
 axios.get("http://localhost:5000/api/v1/company-logo")
 .then(res => {
-    console.log(res?.data);
     setLogos(res?.data)
 })
+},[])
 
     return (
         <div className="my-40 px-2 md:px-0">
