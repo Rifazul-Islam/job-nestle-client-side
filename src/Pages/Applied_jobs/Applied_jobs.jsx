@@ -1,26 +1,35 @@
 
-import { useEffect,  useRef,  useState } from "react";
+import { useRef } from "react";
 import useAuth from "../../hooks/useAuth";
 import CardTable from "./CardTable";
 import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 import useAxios from "../../hooks/useAxios";
 import { useReactToPrint } from "react-to-print";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Applied_jobs = () => {
-  
-  const[isLoading ,setIsLoading] = useState(true)
-const[applies,setApplies] = useState([]) ;
+
 const {user}= useAuth()  
 const axiosSecure = useAxios();
-useEffect(()=>{
-  setIsLoading(true)
-  axiosSecure.get(`/api/v1/applied?email=${user?.email}`)
- .then(res =>{
-    setApplies(res?.data)
-    setIsLoading(false)
+
+
+
+
+const myFunction =  async ()=>{
+  const res = await axiosSecure.get(`/api/v1/applied?email=${user?.email}`)
+  return res.data ;
+ }
+ 
+ /// tanStack
+ const {data:applies,isLoading} = useQuery({
+   queryKey: ['job'],
+   queryFn: myFunction
+ 
  })
-},[axiosSecure,user?.email])
+
+
+
 
 // print system empiliment
 const componentRef = useRef()
@@ -38,7 +47,6 @@ const handlerPrint = useReactToPrint({
      <>
         <div ref={componentRef} style={{width: '100%', height: window.innerHeight}}>
       
-       
 
       <PageTitle  title="Applied jobs Page"/>
   
@@ -62,7 +70,7 @@ const handlerPrint = useReactToPrint({
 {/* // Table  */}
 
 {
-applies.length > 0 ? 
+
 <div className="bg-zinc-200 my-10" >
 
 <div className="overflow-x-auto ">
@@ -90,7 +98,7 @@ applies?.map((apply,idx) => <CardTable key={apply?._id} apply={apply} idx={idx} 
 
 </table>
 </div>
-</div> : <div> <h1 className="text-center py-10 text-3xl font-bold">Please Data Add </h1>  </div>
+</div> 
 }
 
  </div>

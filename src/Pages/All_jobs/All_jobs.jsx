@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 import PageTitle from "../../components/Shared/PageTitle/PageTitle";
 
+
 const All_jobs = () => {
 const [allJobs,setAllJobs] = useState([])
 const [title , setTitle] = useState(" ")
@@ -13,9 +14,11 @@ useEffect( () => {
     axios.get("http://localhost:5000/api/v1/jobs")
     .then(res => {
         setAllJobs(res.data)
-        setIsLoading(true)
+        setIsLoading(false)
     })
 },[])
+
+
     
 
 const handlerSearch =(e)=>{
