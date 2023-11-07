@@ -9,14 +9,16 @@ import { useReactToPrint } from "react-to-print";
 
 const Applied_jobs = () => {
   
-
+  const[isLoading ,setIsLoading] = useState(true)
 const[applies,setApplies] = useState([]) ;
 const {user}= useAuth()  
 const axiosSecure = useAxios();
 useEffect(()=>{
+  setIsLoading(true)
   axiosSecure.get(`/api/v1/applied?email=${user?.email}`)
  .then(res =>{
     setApplies(res?.data)
+    setIsLoading(false)
  })
 },[axiosSecure,user?.email])
 
@@ -80,7 +82,7 @@ applies.length > 0 ?
 </thead>
 <tbody>
  
-{
+{ isLoading ? <div className=" ml-[600px] my-28  text-green-600"><span className="loading loading-dots loading-lg"></span></div> :
 applies?.map((apply,idx) => <CardTable key={apply?._id} apply={apply} idx={idx} ></CardTable> )
 }
 

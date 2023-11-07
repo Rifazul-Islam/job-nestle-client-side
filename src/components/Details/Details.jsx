@@ -12,7 +12,7 @@ const job = useLoaderData()
 const {_id,name:userName,photo,category,title,salary,description,postDate,deadline,defaultNum} = job;
 const currentDate = new Date();
 const myDate = (currentDate.toLocaleDateString())
-console.log(parseFloat(defaultNum)+8+1);
+
 
 const handlerModal = (e)=>{
     e.preventDefault();
@@ -45,6 +45,10 @@ const handlerModal = (e)=>{
    
 }
 
+
+
+const presentDate = Date.now();
+console.log("Present Date 52", presentDate);
 
     return (
         <div className="px-2">
