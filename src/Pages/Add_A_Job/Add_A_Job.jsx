@@ -16,7 +16,7 @@ const Add_A_Job = () => {
     let deadline = (startDate.toLocaleDateString());
     let postDated = (postDate.toLocaleDateString());
   
-
+// job Post form value ;
     const handlerAddProduct =(e)=>{
       e.preventDefault();
       const form = e.target;
@@ -43,7 +43,7 @@ const Add_A_Job = () => {
       const job = {name,photo,category,title,salary,description,postDate,deadline,defaultNum}
       
 
-    axios.post("http://localhost:5000/api/v1/insert-jobs", job)
+    axios.post("https://job-nestle-server-side.vercel.app/api/v1/insert-jobs", job)
     .then(res =>{
         if(res?.data?.insertedId)
         toast.success("Your Job Post MongoDB Inserted Successfully")

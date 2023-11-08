@@ -8,7 +8,7 @@ const[logos ,setLogos] = useState([])
 
 useEffect( ()=>{
     setIsLoading(true)
-axios.get("http://localhost:5000/api/v1/company-logo")
+axios.get("https://job-nestle-server-side.vercel.app/api/v1/company-logo")
 .then(res => {
     setLogos(res?.data)
     setIsLoading(false)

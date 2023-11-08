@@ -52,13 +52,13 @@ const unSubscribe = onAuthStateChanged(auth, currentUser =>{
     setUser(currentUser)
     setLoading(false)
  if(currentUser){
-    axios.post("http://localhost:5000/api/v1/jwt",userEmail,{withCredentials : true} )
+    axios.post("https://job-nestle-server-side.vercel.app/api/v1/jwt",userEmail,{withCredentials : true} )
     .then(res =>{
       console.log(res.data);
       toast.success("Token Create Successfully")
     })
  }else{
-    axios.post("http://localhost:5000/api/v1/singOut",userEmail, {withCredentials: true})
+    axios.post("https://job-nestle-server-side.vercel.app/api/v1/singOut",userEmail, {withCredentials: true})
     .then(res =>{
       console.log(res.data);
     })

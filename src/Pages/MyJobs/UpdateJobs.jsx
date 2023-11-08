@@ -38,7 +38,7 @@ const handlerUpdateJobs = (e)=>{
 
 const updateJob = {name,title,photo,category, deadline, postDate, salary,description,defaultNum};
 
-  axios.put(`http://localhost:5000/api/v1/update-job/${_id}`,updateJob)
+  axios.put(`https://job-nestle-server-side.vercel.app/api/v1/update-job/${_id}`,updateJob)
   .then(res =>{
     if(res?.data?.modifiedCount > 0){
         toast.success("Your job Update Successfully")

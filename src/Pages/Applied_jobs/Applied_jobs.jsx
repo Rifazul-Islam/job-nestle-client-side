@@ -13,15 +13,12 @@ const Applied_jobs = () => {
 const {user}= useAuth()  
 const axiosSecure = useAxios();
 
-
-
-
 const myFunction =  async ()=>{
   const res = await axiosSecure.get(`/api/v1/applied?email=${user?.email}`)
   return res.data ;
  }
  
- /// tanStack
+ /// tanStack query Used 
  const {data:applies,isLoading} = useQuery({
    queryKey: ['job'],
    queryFn: myFunction

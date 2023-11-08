@@ -13,7 +13,8 @@ const{user} = useAuth();
 const name = user?.displayName;
 const axiosSecure = useAxios()
 
-const[jobs,setJobs] = useState([])   
+const[jobs,setJobs] = useState([])  
+// My Jobs Name through Data Load  
 useEffect(()=>{
     setIsLoading(true)
     axiosSecure.get(`/api/v1/jobs-UserName?name=${name}`)
@@ -34,7 +35,10 @@ useEffect(()=>{
 
                     
               </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-20">
+
+         {
+            jobs?.length > 0 ? 
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-20">
             { isLoading ? <div className=" ml-[600px] my-28  text-green-600">   <span className="loading loading-dots loading-lg"></span></div> :
                 jobs?.map(job =><MyCard key={job?._id} job={job}
                
@@ -42,7 +46,10 @@ useEffect(()=>{
                     setJobs={setJobs}
                     ></MyCard>)
             }
-        </div>
+          </div>
+
+          : <div> <h2 className="text-center my-10 text-3xl text-orange-500 font-bold">No Data Available </h2> </div>
+         }
         </div>
     );
 };

@@ -54,12 +54,12 @@ const router = createBrowserRouter([
      {
        path:"/details/:id",
        element: <PrivateRoute><Details></Details></PrivateRoute>,
-       loader:({params})=>fetch(`http://localhost:5000/api/v1/jobs/${params.id}`)
+       loader:({params})=>fetch(`https://job-nestle-server-side.vercel.app/api/v1/jobs/${params.id}`)
      },
      {
        path:"/updateJobs/:id",
        element: <PrivateRoute><UpdateJobs></UpdateJobs></PrivateRoute>,
-       loader:({params})=>fetch(`http://localhost:5000/api/v1/jobs/${params.id}`)
+       loader:({params})=>fetch(`https://job-nestle-server-side.vercel.app/api/v1/jobs/${params.id}`)
      }
   
     ]

@@ -38,7 +38,7 @@ const Blog = () => {
                 <div className="card w-full mt-5 bg-base-100 shadow-xl border-2 border-green-600">
                 <div className="card-body">
                     <h2 className="card-title font-bold"> 03.Explain your code? </h2>
-                    <p> <strong> Answer</strong> : NestJS offers cross-platform support, allowing developers to build applications for various platforms. Express. js is platform-independent and can be used on different operating systems. </p>
+                    <p> <strong> Answer</strong> : My main purpose of the site is that user can come here and post jobs if he wants to apply if I talk about home page data I use use effect in job category.And with the help of get method of Axios, I saw the home page data from MongoDB. </p>
                     
                    <div className="card-actions justify-end">
                     <button className="btn btn-success capitalize">Read More</button>

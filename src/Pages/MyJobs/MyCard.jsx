@@ -18,7 +18,7 @@ const MyCard = ({job,jobs,setJobs}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/api/v1/jobs-title/${id}`)
+                axios.delete(`https://job-nestle-server-side.vercel.app/api/v1/jobs-title/${id}`)
 
                 .then(res =>{
                    if(res?.data?.deletedCount > 0){

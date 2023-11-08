@@ -29,12 +29,12 @@ const handlerModal = (e)=>{
     return toast.error("Application is not allowed, because time is over")
    }
 
-    axios.post("http://localhost:5000/api/v1/job-applies", applied)
+    axios.post("https://job-nestle-server-side.vercel.app/api/v1/job-applies", applied)
     .then(res =>{
         if(res.data){
             console.log(res.data);
             toast.success("Your Apply Successfully")
-            axios.patch(`http://localhost:5000/api/v1/appliedCount/${_id}`,{defaultNum} )
+            axios.patch(`https://job-nestle-server-side.vercel.app/api/v1/appliedCount/${_id}`,{defaultNum} )
             .then(res =>{
                 console.log(res?.data);
                 toast.success("Apply Update")

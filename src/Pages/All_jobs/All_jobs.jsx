@@ -9,9 +9,10 @@ const [allJobs,setAllJobs] = useState([])
 const [title , setTitle] = useState(" ")
 const[isLoading ,setIsLoading] = useState(true)
 
+// All Jobs Data get
 useEffect( () => {
     setIsLoading(true)
-    axios.get("http://localhost:5000/api/v1/jobs")
+    axios.get("https://job-nestle-server-side.vercel.app/api/v1/jobs")
     .then(res => {
         setAllJobs(res.data)
         setIsLoading(false)
@@ -20,7 +21,7 @@ useEffect( () => {
 
 
     
-
+// Search Field Value Get 
 const handlerSearch =(e)=>{
     e.preventDefault();
     const form = e.target;
@@ -30,9 +31,10 @@ const handlerSearch =(e)=>{
    
 }
 
+// Title ma dho me data Load
 useEffect(()=>{
     setIsLoading(true)
-    fetch(`http://localhost:5000/api/v1/jobs-title?title=${title}`)
+    fetch(`https://job-nestle-server-side.vercel.app/api/v1/jobs-title?title=${title}`)
     .then(res => res.json())
     .then( data => {
         setAllJobs(data)
